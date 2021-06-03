@@ -7,16 +7,16 @@
         "info": ""
     },
     {
-        "id": "2dff9189.36d03e",
+        "id": "518fe81b.125ff8",
         "type": "tab",
-        "label": "MQTT",
+        "label": "Database",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "518fe81b.125ff8",
+        "id": "2dff9189.36d03e",
         "type": "tab",
-        "label": "Database",
+        "label": "MQTT",
         "disabled": false,
         "info": ""
     },
@@ -257,6 +257,48 @@
         "name": ""
     },
     {
+        "id": "c6900da8.d60df",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Inputs",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2dafcffa.3586c",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "c6900da8.d60df",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "6075ce5b.5cd02",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "272d6b04.525bd4",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "37f0ad99.7be282",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/example",
+        "wholemsg": "false"
+    },
+    {
+        "id": "68d8f02c.2efdb",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/example",
+        "wholemsg": "false"
+    },
+    {
         "id": "5108af6f.6bcf",
         "type": "http in",
         "z": "32fbf2aa.05553e",
@@ -342,11 +384,11 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 160,
-        "y": 120,
+        "x": 280,
+        "y": 60,
         "wires": [
             [
-                "1651b943.a7e1c7"
+                "182b4520.61db2b"
             ]
         ]
     },
@@ -476,9 +518,9 @@
         "id": "3a076490.3f16bc",
         "type": "ui_template",
         "z": "2dff9189.36d03e",
-        "group": "6e3acf87.e92e8",
+        "group": "6075ce5b.5cd02",
         "name": "",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "format": "<div ng-bind-html=\"msg.payload\"></div>",
@@ -511,7 +553,7 @@
         "z": "2dff9189.36d03e",
         "name": "",
         "group": "6e3acf87.e92e8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -587,7 +629,7 @@
         "type": "function",
         "z": "518fe81b.125ff8",
         "name": "",
-        "func": "let newStockPrice = {\n    name: \"TGV\",\n    price: Math.random()*50\n}\n\nmsg.payload= newStockPrice;\nreturn msg;",
+        "func": "let newStockPrice = {\n    name: \"APPLE\",\n    price: Math.random()*50\n}\n\nmsg.payload= newStockPrice;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 330,
@@ -675,5 +717,144 @@
                 "4bbb7282.a67abc"
             ]
         ]
+    },
+    {
+        "id": "d9e23cb2.66b59",
+        "type": "http in",
+        "z": "32fbf2aa.05553e",
+        "name": "",
+        "url": "/presentation",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 320,
+        "wires": [
+            [
+                "d5a91531.18bce8"
+            ]
+        ]
+    },
+    {
+        "id": "d5a91531.18bce8",
+        "type": "function",
+        "z": "32fbf2aa.05553e",
+        "name": "",
+        "func": "msg.payload = \"Hello all of you !\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "f552d782.9a0398"
+            ]
+        ]
+    },
+    {
+        "id": "f552d782.9a0398",
+        "type": "http response",
+        "z": "32fbf2aa.05553e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "de4dff3a.d8dea",
+        "type": "ui_text_input",
+        "z": "2dff9189.36d03e",
+        "name": "",
+        "label": "Username",
+        "tooltip": "",
+        "group": "6e3acf87.e92e8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "",
+        "x": 510,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8652a9e7.9c9d88",
+        "type": "websocket in",
+        "z": "2dff9189.36d03e",
+        "name": "",
+        "server": "68d8f02c.2efdb",
+        "client": "",
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "843765a0.ac0748"
+            ]
+        ]
+    },
+    {
+        "id": "8af64853.82ada8",
+        "type": "websocket out",
+        "z": "2dff9189.36d03e",
+        "name": "",
+        "server": "37f0ad99.7be282",
+        "client": "",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8c7741e3.ab5bc",
+        "type": "inject",
+        "z": "2dff9189.36d03e",
+        "name": "",
+        "topic": "",
+        "payload": "32",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "8af64853.82ada8"
+            ]
+        ]
+    },
+    {
+        "id": "843765a0.ac0748",
+        "type": "debug",
+        "z": "2dff9189.36d03e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 640,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "182b4520.61db2b",
+        "type": "debug",
+        "z": "32fbf2aa.05553e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 500,
+        "y": 80,
+        "wires": []
     }
 ]
