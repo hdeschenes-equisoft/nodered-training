@@ -1,0 +1,28 @@
+version: "3.1"
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:1.6.1
+    container_name: mqtt-broker
+    volumes:
+      - "mosquitto_data:/mosquitto/data"
+      - "./mqtt-broker:/mosquitto/config"
+    ports:
+      - "1884:1884"
+      - "9002:9002"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "20"
+        max-size: "20m"
+  mongodb:
+    image: mongo
+    container_name: fileserver-db
+    volumes:
+      - '${HOST_DB_DIR}:/data/db'
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+    network_mode: bridge
+volumes:
+  mosquitto_data:

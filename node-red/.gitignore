@@ -1,0 +1,37 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/protoroom-ui/.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode
+
+.env
+
+# Node-RED
+.config.json 
+.config.json.backup
+.sessions.json
+.flows.json.backup
+.flow_cred.json.backup
+flow_cred.json
+
+protoroom-node-backend/app/context
